@@ -98,31 +98,43 @@ namespace dvrat
                             ListViewItem row1 = new ListViewItem();
                             row1.Text = pair.ToString();
                             row1.SubItems.Add("DIR");
-                            row1.ImageIndex = 5;
+                            row1.ImageIndex = 1;
                             listView1.Items.Add(row1);
                         }
                         
                     }
 
                 }));
+                string temp = Path.GetTempFileName(), withexttemp = "";
+                using (Stream fileStream = File.OpenWrite(temp)) { fileStream.Close(); }
+
                 foreach (JProperty x in (JToken)files)
                 {
                     listView1.Invoke(new MethodInvoker(() => {
                         ListViewItem row1 = new ListViewItem();
                         row1.Text = x.Name.ToString();
                         row1.SubItems.Add("FILE");
-                        
-                        if (IsRecognisedImageFile(x.Name.ToString()))
+                        //Icon should set from my pc
+                        // so the idea is create a temp file with the same Extension then extract it icon then set it so simple
+                        string file_ext = Path.GetExtension(x.Name.ToString());
+                        try
                         {
-                            row1.ImageIndex = 3;
-                        }else if(Path.GetExtension(x.Name.ToString()).Equals(".exe", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            row1.ImageIndex = 4;
-                        }else if (Path.GetExtension(x.Name.ToString()).Equals(".txt", StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            row1.ImageIndex = 1;
+                            file_ext = Path.GetExtension(x.Name.ToString());
+                            withexttemp = Path.ChangeExtension(temp, file_ext);
+                            File.Move(temp, withexttemp);
+                            temp = withexttemp;
                         }
-                        else
+                        catch (Exception ex)
+                        {
+                            //just pass
+                        }
+                        try
+                        {
+                            Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(withexttemp);
+                            imageList1.Images.Add(ico);
+                            row1.ImageIndex = imageList1.Images.Count - 1;
+                        }
+                        catch (Exception ex)
                         {
                             row1.ImageIndex = 0;
                         }
@@ -133,7 +145,7 @@ namespace dvrat
 
 
                 }
-    
+                File.Delete(temp);
 
             }))).Start();
         }
@@ -151,7 +163,7 @@ namespace dvrat
                     row1_.Text = ".."/*go back folder*/;
                     row1_.SubItems.Add("DIR");
                     row1_.SubItems.Add("");
-                    row1_.ImageIndex = 5;
+                    row1_.ImageIndex = 1;
                     listView2.Items.Add(row1_);
                     listView2.Refresh();
                     var attributes = files["DIR"];
@@ -167,7 +179,7 @@ namespace dvrat
                             row1.Text = pair.ToString();
                             row1.SubItems.Add("DIR");
                             row1.SubItems.Add("");
-                            row1.ImageIndex = 5;
+                            row1.ImageIndex = 1;
                             listView2.Items.Add(row1);
                             listView2.Refresh();
                         }
@@ -178,21 +190,46 @@ namespace dvrat
 
 
                 listView2.Invoke(new MethodInvoker(() => {
-
+                        string temp = Path.GetTempFileName(), withexttemp = "",file_ext = "";
+                        using (Stream fileStream = File.OpenWrite(temp)) { fileStream.Close(); }
                         foreach (JProperty x in (JToken)files)
                         {
-
+                            
                             ListViewItem row1 = new ListViewItem();
                             row1.Text = x.Name.ToString();
                             row1.SubItems.Add("FILE");
                             int size = 0;
                             bool isInt = Int32.TryParse(x.Value.ToString(), out size);
                             row1.SubItems.Add(isInt ? this._parent.DataSize(size) : "UNKNOWN");
-                            row1.ImageIndex = 0;
+                            //Icon should set from my pc
+                            // so the idea is create a temp file with the same Extension then extract it icon then set it so simple
+                            try
+                            {
+                                file_ext = Path.GetExtension(x.Name.ToString());
+                                withexttemp = Path.ChangeExtension(temp, file_ext);
+                                File.Move(temp, withexttemp);
+                                temp = withexttemp;
+                            }
+                            catch (Exception ex)
+                            {
+                                //just pass
+                            }
+                            try
+                            {
+                                Icon ico = System.Drawing.Icon.ExtractAssociatedIcon(withexttemp);
+                                imageList1.Images.Add(ico);
+                                row1.ImageIndex = imageList1.Images.Count - 1;
+                            }
+                            catch (Exception ex)
+                            {
+                                row1.ImageIndex = 0;
+                            }
                             listView2.Items.Add(row1);
                             listView2.Refresh();
                         
                         }
+                        File.Delete(temp);
+
 
                 }));
 
