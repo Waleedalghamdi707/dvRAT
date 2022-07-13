@@ -42,6 +42,13 @@ namespace dvrat
             this.upload_label = new System.Windows.Forms.Label();
             this.connections_label = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this._flag = new System.Windows.Forms.DataGridViewImageColumn();
+            this._ip = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._active_window = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._windows_username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._PC_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.isadmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._client_status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.fUCKToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.overWriteMBRToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -61,13 +68,7 @@ namespace dvrat
             this.mem_usage_label = new System.Windows.Forms.Label();
             this.cpu_usage_label = new System.Windows.Forms.Label();
             this.selected_client_label = new System.Windows.Forms.Label();
-            this._flag = new System.Windows.Forms.DataGridViewImageColumn();
-            this._ip = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._active_window = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._windows_username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._PC_NAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.isadmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._client_status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.is_focus_label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -200,6 +201,57 @@ namespace dvrat
             this.dataGridView1.Size = new System.Drawing.Size(1000, 398);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellMouseMove += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseMove);
+            // 
+            // _flag
+            // 
+            this._flag.HeaderText = "FLAG";
+            this._flag.Name = "_flag";
+            this._flag.ReadOnly = true;
+            this._flag.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this._flag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this._flag.Width = 57;
+            // 
+            // _ip
+            // 
+            this._ip.HeaderText = "IP";
+            this._ip.Name = "_ip";
+            this._ip.ReadOnly = true;
+            this._ip.Width = 42;
+            // 
+            // _active_window
+            // 
+            this._active_window.HeaderText = "Active Window";
+            this._active_window.Name = "_active_window";
+            this._active_window.ReadOnly = true;
+            this._active_window.Width = 103;
+            // 
+            // _windows_username
+            // 
+            this._windows_username.HeaderText = "USERNAME";
+            this._windows_username.Name = "_windows_username";
+            this._windows_username.ReadOnly = true;
+            this._windows_username.Width = 86;
+            // 
+            // _PC_NAME
+            // 
+            this._PC_NAME.HeaderText = "PC-NAME";
+            this._PC_NAME.Name = "_PC_NAME";
+            this._PC_NAME.ReadOnly = true;
+            this._PC_NAME.Width = 77;
+            // 
+            // isadmin
+            // 
+            this.isadmin.HeaderText = "IS-ADMIN";
+            this.isadmin.Name = "isadmin";
+            this.isadmin.ReadOnly = true;
+            this.isadmin.Width = 79;
+            // 
+            // _client_status
+            // 
+            this._client_status.HeaderText = "STATUS";
+            this._client_status.Name = "_client_status";
+            this._client_status.ReadOnly = true;
+            this._client_status.Width = 70;
             // 
             // contextMenuStrip1
             // 
@@ -402,56 +454,16 @@ namespace dvrat
             this.selected_client_label.TabIndex = 9;
             this.selected_client_label.Text = "SELECTED_CLIENT [ -1 ]";
             // 
-            // _flag
+            // is_focus_label1
             // 
-            this._flag.HeaderText = "FLAG";
-            this._flag.Name = "_flag";
-            this._flag.ReadOnly = true;
-            this._flag.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this._flag.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this._flag.Width = 57;
-            // 
-            // _ip
-            // 
-            this._ip.HeaderText = "IP";
-            this._ip.Name = "_ip";
-            this._ip.ReadOnly = true;
-            this._ip.Width = 42;
-            // 
-            // _active_window
-            // 
-            this._active_window.HeaderText = "Active Window";
-            this._active_window.Name = "_active_window";
-            this._active_window.ReadOnly = true;
-            this._active_window.Width = 103;
-            // 
-            // _windows_username
-            // 
-            this._windows_username.HeaderText = "USERNAME";
-            this._windows_username.Name = "_windows_username";
-            this._windows_username.ReadOnly = true;
-            this._windows_username.Width = 86;
-            // 
-            // _PC_NAME
-            // 
-            this._PC_NAME.HeaderText = "PC-NAME";
-            this._PC_NAME.Name = "_PC_NAME";
-            this._PC_NAME.ReadOnly = true;
-            this._PC_NAME.Width = 77;
-            // 
-            // isadmin
-            // 
-            this.isadmin.HeaderText = "IS-ADMIN";
-            this.isadmin.Name = "isadmin";
-            this.isadmin.ReadOnly = true;
-            this.isadmin.Width = 79;
-            // 
-            // _client_status
-            // 
-            this._client_status.HeaderText = "STATUS";
-            this._client_status.Name = "_client_status";
-            this._client_status.ReadOnly = true;
-            this._client_status.Width = 70;
+            this.is_focus_label1.AutoSize = true;
+            this.is_focus_label1.BackColor = System.Drawing.Color.Red;
+            this.is_focus_label1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.is_focus_label1.Location = new System.Drawing.Point(745, 3);
+            this.is_focus_label1.Name = "is_focus_label1";
+            this.is_focus_label1.Size = new System.Drawing.Size(105, 13);
+            this.is_focus_label1.TabIndex = 9;
+            this.is_focus_label1.Text = "IS_FOCUS [ true ]";
             // 
             // Form1
             // 
@@ -459,6 +471,7 @@ namespace dvrat
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(1368, 450);
+            this.Controls.Add(this.is_focus_label1);
             this.Controls.Add(this.selected_client_label);
             this.Controls.Add(this.cpu_usage_label);
             this.Controls.Add(this.mem_usage_label);
@@ -482,6 +495,8 @@ namespace dvrat
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "dvRAT v0.1";
+            this.Activated += new System.EventHandler(this.Form1_Activated);
+            this.Deactivate += new System.EventHandler(this.Form1_Deactivate);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -526,6 +541,7 @@ namespace dvrat
         private System.Windows.Forms.DataGridViewTextBoxColumn _PC_NAME;
         private System.Windows.Forms.DataGridViewTextBoxColumn isadmin;
         private System.Windows.Forms.DataGridViewTextBoxColumn _client_status;
+        private System.Windows.Forms.Label is_focus_label1;
     }
 }
 

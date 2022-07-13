@@ -43,6 +43,20 @@ namespace dvrat
 
         #region form functions
         //its functions that mmake changes or help you to control form .
+
+
+        private void Form1_Deactivate(object sender, EventArgs e)
+        {
+            this.Opacity = 0.7;
+            is_focus_label1.Text = "IS_FOCUS [ false ]";
+        }
+
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            this.Opacity = 1;
+            is_focus_label1.Text = "IS_FOCUS [ true ]";
+        }
+
         private void exit_x_label_MouseHover(object sender, EventArgs e)
         {
             exit_x_label.ForeColor = Color.Black;
@@ -1022,9 +1036,11 @@ namespace dvrat
 
 
 
+
+
         /* END server functions */
         #endregion
 
-
+    
     }
 }
