@@ -88,7 +88,7 @@
 `هنالك نقط معينة يمكنك ان تبدأ منها في الكود`\
 مثلا في ملف main.c تستطيع البدأ من منطقة loop_region:\
 ![](https://i.ibb.co/Pz675Cj/hzt-Xp-E50u-A.png)\
-او في ملف Form1.cs تستطيع البدأ من فنكشن dealing_with_the_client\
+او في ملف Form1.cs تستطيع البدأ من فنكشن dealing_with_the_client:\
 ![](https://i.ibb.co/Pj0cpBN/WCt-Yr-Io-Nbp.png)
 
 </div>
