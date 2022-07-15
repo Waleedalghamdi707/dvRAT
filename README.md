@@ -91,4 +91,8 @@
 او في ملف Form1.cs تستطيع البدأ من فنكشن dealing_with_the_client:\
 ![](https://i.ibb.co/Pj0cpBN/WCt-Yr-Io-Nbp.png)
 
+# للتواصل
+**اذا كنت تريد التواصل بشكل مباشر مع صاحب المشروع فهذه هي الحسابات الوحيدة الرسمية**\
+IG: @dvr1t , @jUsTaLgHaMdi\
+EMAIL: devilrat.sa@gmail.com
 </div>
