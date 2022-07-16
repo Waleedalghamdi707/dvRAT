@@ -107,5 +107,8 @@ EMAIL: devilrat.sa@gmail.com
  لتحميل نسخة تجريبية
 <a href="http://cdn.justalghamdi.xyz/dvRAT_v0.1_demo.zip" target="_blank">من هنا</a>
 أيضا يمكنك <a href="https://github.com/justalghamdi/dvRAT/releases/tag/v0.0.1-pre-alpha" target="_blank">من هنا</a>
-
+\
+  أيضا يمكنك متابعة اخر التحديثات للمشروع هنا
+ \
+  https://www.instagram.com/dvr1t/
 </div>
