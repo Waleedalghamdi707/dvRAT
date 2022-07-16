@@ -87,9 +87,9 @@
 # من أين تبدأ !
 `هنالك نقط معينة يمكنك ان تبدأ منها في الكود`\
 مثلا في ملف main.c تستطيع البدأ من منطقة loop_region:\
-![](http://cdn.justalghamdi.xyz/hztXpE50uA.png)\
+![](https://i.ibb.co/Pz675Cj/hzt-Xp-E50u-A.png)\
 او في ملف Form1.cs تستطيع البدأ من فنكشن dealing_with_the_client:\
-![](http://cdn.justalghamdi.xyz/WCtYrIoNbp.png)
+![](https://i.ibb.co/Pj0cpBN/WCt-Yr-Io-Nbp.png)
 
 # للتواصل
 **اذا كنت تريد التواصل بشكل مباشر مع صاحب المشروع فهذه هي الحسابات الوحيدة الرسمية**\
@@ -99,7 +99,7 @@ EMAIL: devilrat.sa@gmail.com
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------
  لتحميل نسخة تجريبية
 <a href="http://cdn.justalghamdi.xyz/dvRAT_v0.1_demo.zip" target="_blank">من هنا</a>
- أيضا يمكنك من 
+أيضا يمكنك  
   <a href="https://github.com/justalghamdi/dvRAT/releases/tag/v0.0.1-pre-alpha" target="_blank">من هنا</a>
 
 </div>
